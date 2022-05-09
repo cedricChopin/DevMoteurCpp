@@ -6,7 +6,7 @@
 class GameObject : Behaviour, Transform
 {
 private:
-	Scene *scene;
+	//Scene *scene;
 public:
 	Transform transform;
 
@@ -14,7 +14,7 @@ public:
 		transform = Transform();
 	}
 	~GameObject() {
-		scene->SetInactive(this);
+		//scene->SetInactive(this);
 	}
 
 
