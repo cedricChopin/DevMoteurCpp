@@ -1,7 +1,8 @@
 #pragma once
-#include "pch.h"
 
 class Component
 {
+public:
+	Component() {}
 };
 

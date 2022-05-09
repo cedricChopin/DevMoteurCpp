@@ -2,7 +2,7 @@
 #include "Vector2.h"
 #include "Component.h"
 
-class Transform : Component
+class Transform : public Component
 {
 public:
 	Vector2 position;

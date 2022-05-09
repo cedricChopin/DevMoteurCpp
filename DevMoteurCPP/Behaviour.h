@@ -1,7 +1,6 @@
 #pragma once
-#include "Component.h"
 
-class Behaviour : Component
+class Behaviour
 {
 	virtual void Start();
 	virtual void Update();
