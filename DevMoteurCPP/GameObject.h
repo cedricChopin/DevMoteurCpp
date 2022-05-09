@@ -6,19 +6,20 @@
 #include "Vector2.h"
 #include "Behaviour.h"
 #include "Transform.h"
+#include "Scene.h"
 
-
-class GameObject : Behaviour
+class GameObject
 {
 private:
-	//Scene *scene;
-
+	Scene* scene;
 public:
 	static GameObject* m_pool;
 	static int m_currentIndex;
 
 public:
 	std::vector<Component*> *components;
+	Behaviour behaviour;
+	Transform transform;
 
 	GameObject() {
 		Transform *transform = new Transform();

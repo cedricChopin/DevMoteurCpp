@@ -12,6 +12,8 @@
 #include "Input.h"
 #include "Engine.h"
 #include "EngineContext.h"
+#include "Scene.h"
+#include "GameObject.h"
 
 #include <iostream>
 #include <vector>
@@ -51,6 +53,7 @@ namespace ESGI
 	{
 		// ce vecteur va nous permettre d'iterer sur l'ensemble des elements du moteur sans les nommer individuellement
 		std::vector<InfraStructure*> m_cores;
+		Scene* scene;
 
 		// les references sont plus complexes a initialiser (via le constructeur seulement)
 		EngineContext& m_context;
@@ -98,6 +101,7 @@ namespace ESGI
 			m_cores.emplace_back(&m_context.clock);
 			m_cores.emplace_back(&m_context.input);
 			m_cores.emplace_back(&m_context.engine);
+			scene = new Scene();
 
 			return true;
 		}
@@ -123,6 +127,13 @@ namespace ESGI
 			for (auto * core : m_cores) {
 				allOk &= core->Initialize();
 			}
+			// Test d'ajouts de GameObjects
+			/*GameObject* object1 = new GameObject();
+			GameObject* object2 = new GameObject();
+			GameObject* object3 = new GameObject();
+			scene->SetActive(object1);
+			scene->SetActive(object2);
+			scene->SetActive(object3);*/
 
 			// exemple de scheduling de deux fonctions (non membre, plus simple a faire)
 			// todo: event/delegate facon c# acceptant tout type de fonction.
