@@ -12,6 +12,11 @@ class GameObject : Behaviour
 {
 private:
 	//Scene *scene;
+
+public:
+	static GameObject* m_pool;
+	static int m_currentIndex;
+
 public:
 	std::vector<Component*> *components;
 
@@ -20,9 +25,22 @@ public:
 		components->push_back(transform);
 	}
 	~GameObject() {
-		//scene->SetInactive(this);
+		delete[] components;
+		delete(this);
 	}
 
+	static GameObject* Allocate() {
+		return &m_pool[m_currentIndex++];
+	}
+	static void CreatePool(int count) {
+		m_pool = new GameObject[count];
+	}
+	static void DestroyPool() {
+		delete[] m_pool;
+	}
 
+	void Destroy() {
+		//scene->SetInactive(this);
+	}
 };
 
