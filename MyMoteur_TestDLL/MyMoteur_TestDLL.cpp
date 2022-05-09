@@ -2,12 +2,9 @@
 //
 
 #include <iostream>
-#include "../DevMoteurCPP/MyMoteur.cpp"
+#include "../DevMoteurCPP/MyMoteur.h"
+#include "../DevMoteurCPP/mainloop.cpp"
 
-int main()
-{
-    std::cout << return42();
-}
 
 // Exécuter le programme : Ctrl+F5 ou menu Déboguer > Exécuter sans débogage
 // Déboguer le programme : F5 ou menu Déboguer > Démarrer le débogage

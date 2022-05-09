@@ -1,9 +1,6 @@
-#include "MyMoteur.h"
 #include "pch.h"
+#include "MyMoteur.h"
 
-extern "C" {
-    DllExport int return42() {
+int return42() {
         return 42;
     }
-
-}

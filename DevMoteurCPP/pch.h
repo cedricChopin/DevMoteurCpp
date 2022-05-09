@@ -6,9 +6,9 @@
 
 #ifndef PCH_H
 #define PCH_H
+#define DllExport __declspec( dllexport )
 
 // ajouter les en-têtes à précompiler ici
 #include "framework.h"
-#include "MyMoteur.h"
 
 #endif //PCH_H
