@@ -3,19 +3,23 @@
 #include <algorithm>
 
 class GameObject;
-class Scene
+__declspec(dllexport) class Scene
 {
 private:
 	std::vector<GameObject*> ActiveObjects;
 	std::vector<GameObject*> InactiveObjects;
 
 public:
-	Scene();
-	void SetInactive(GameObject*);
+	__declspec(dllexport) Scene();
+	__declspec(dllexport) void SetInactive(GameObject*);
 
-	void SetActive(GameObject*);
+	__declspec(dllexport) void SetActive(GameObject*);
 
-	void CleanInactive();
+	__declspec(dllexport) void CleanInactive();
+
+	//std::vector<GameObject*> GetActiveObjects();
+
+
 
 };
 

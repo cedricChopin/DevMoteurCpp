@@ -1,8 +1,8 @@
 #pragma once
 
-class Component
+__declspec(dllexport) class Component
 {
 public:
-	Component() {}
+	__declspec(dllexport) Component() {}
 };
 

@@ -8,7 +8,7 @@
 #include "Transform.h"
 #include "Scene.h"
 
-class GameObject
+__declspec(dllexport) class GameObject
 {
 private:
 	Scene* scene;
@@ -16,17 +16,27 @@ public:
 	static GameObject* m_pool;
 	static int m_currentIndex;
 
-public:
 	std::vector<Component*> *components;
 	Behaviour behaviour;
 	Transform transform;
 
 	GameObject() {
+		scene = new Scene();
+		components = new std::vector<Component*>();
 		Transform *transform = new Transform();
 		components->push_back(transform);
 	}
+	GameObject(Scene* myScene) {
+		scene = myScene;
+		
+		components = new std::vector<Component*>();
+		Transform* transform = new Transform();
+		components->push_back(transform);
+		scene->SetActive(this);
+	}
 	~GameObject() {
 		delete[] components;
+		scene = nullptr;
 		delete(this);
 	}
 
@@ -40,8 +50,6 @@ public:
 		delete[] m_pool;
 	}
 
-	void Destroy() {
-		//scene->SetInactive(this);
-	}
+
 };
 

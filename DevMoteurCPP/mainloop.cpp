@@ -19,8 +19,12 @@
 #include <vector>
 #include <thread>
 
+
+GameObject* GameObject::m_pool = new GameObject[1];
+int GameObject::m_currentIndex = 0;
 namespace ESGI
-{
+{	
+	
 	//
 	// fonctions globales
 	//
@@ -127,13 +131,11 @@ namespace ESGI
 			for (auto * core : m_cores) {
 				allOk &= core->Initialize();
 			}
+			
 			// Test d'ajouts de GameObjects
-			/*GameObject* object1 = new GameObject();
-			GameObject* object2 = new GameObject();
-			GameObject* object3 = new GameObject();
-			scene->SetActive(object1);
-			scene->SetActive(object2);
-			scene->SetActive(object3);*/
+			GameObject* object1 = new GameObject(scene);
+			GameObject* object2 = new GameObject(scene);
+			GameObject* object3 = new GameObject(scene);
 
 			// exemple de scheduling de deux fonctions (non membre, plus simple a faire)
 			// todo: event/delegate facon c# acceptant tout type de fonction.
@@ -163,6 +165,13 @@ namespace ESGI
 			m_context.Input().Update();
 			
 			m_context.Engine().Update(m_context);
+			/*std::cout << "Scene : ";
+			std::for_each(scene->GetActiveObjects().begin(), scene->GetActiveObjects().end(),
+				[](GameObject* object)
+				{
+					std::cout << &object << " \n";
+				}
+			);*/
 		}
 
 		// main loop

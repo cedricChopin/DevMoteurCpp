@@ -33,3 +33,7 @@ void Scene::CleanInactive() {
 	);
 	InactiveObjects.clear();
 }
+/*
+std::vector<GameObject*> Scene::GetActiveObjects() {
+	return ActiveObjects;
+}*/

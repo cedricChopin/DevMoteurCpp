@@ -1,9 +1,9 @@
 #pragma once
 
-class Behaviour
+__declspec(dllexport) class Behaviour
 {
-	virtual void Start();
-	virtual void Update();
-	virtual void Awake();
+	void Start();
+	void Update();
+	void Awake();
 };
 
