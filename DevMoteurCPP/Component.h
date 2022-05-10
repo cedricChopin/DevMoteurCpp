@@ -1,13 +1,15 @@
 #pragma once
 #include "Behaviour.h"
-
-__declspec(dllexport) class Component : public Behaviour
+namespace ESGI
 {
-public:
+	__declspec(dllexport) class Component : public Behaviour
+	{
+	public:
 
-	__declspec(dllexport) Component() {}
-	virtual void Start();
-	virtual void Update();
-	virtual void Awake();
-};
+		__declspec(dllexport) Component() {}
+		virtual void Start() = 0;
+		virtual void Update() = 0;
+		virtual void Awake() = 0;
+	};
 
+}

@@ -20,11 +20,11 @@
 #include <thread>
 
 
-GameObject* GameObject::m_pool = new GameObject[1];
-int GameObject::m_currentIndex = 0;
+
 namespace ESGI
 {	
-	
+	GameObject* GameObject::m_pool = new GameObject[1];
+	int GameObject::m_currentIndex = 0;
 	//
 	// fonctions globales
 	//
@@ -91,6 +91,7 @@ namespace ESGI
 			Input* input = new ESGI::Input;
 			Engine* engine = new ESGI::Engine;
 
+
 			static EngineContext context(*clock, *input, *engine);
 			return context;
 		}
@@ -105,7 +106,6 @@ namespace ESGI
 			m_cores.emplace_back(&m_context.clock);
 			m_cores.emplace_back(&m_context.input);
 			m_cores.emplace_back(&m_context.engine);
-			scene = new Scene();
 
 			return true;
 		}
@@ -131,7 +131,7 @@ namespace ESGI
 			for (auto * core : m_cores) {
 				allOk &= core->Initialize();
 			}
-			
+			scene = new Scene();
 			// Test d'ajouts de GameObjects
 			GameObject* object1 = new GameObject(scene);
 			GameObject* object2 = new GameObject(scene);
@@ -165,13 +165,16 @@ namespace ESGI
 			m_context.Input().Update();
 			
 			m_context.Engine().Update(m_context);
-			/*std::cout << "Scene : ";
-			std::for_each(scene->GetActiveObjects().begin(), scene->GetActiveObjects().end(),
+
+
+			std::cout << "Scene : ";
+			auto ActiveObjects = scene->GetActiveObjects();
+			std::for_each(ActiveObjects.begin(), ActiveObjects.end(),
 				[](GameObject* object)
 				{
-					std::cout << &object << " \n";
+					std::cout << object->toString() << " \n";
 				}
-			);*/
+			);
 		}
 
 		// main loop

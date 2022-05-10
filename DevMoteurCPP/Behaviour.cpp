@@ -1,13 +1,15 @@
 #include "pch.h"
 #include "Behaviour.h"
+namespace ESGI
+{
+	void Start() {
 
-void Start() {
+	}
 
-}
+	void Update() {
+	}
 
-void Update() {
-}
+	void Awake() {
 
-void Awake() {
-
+	}
 }

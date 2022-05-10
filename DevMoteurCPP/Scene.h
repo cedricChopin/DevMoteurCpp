@@ -1,25 +1,29 @@
 #pragma once
 #include <vector>
 #include <algorithm>
-
-class GameObject;
-__declspec(dllexport) class Scene
+namespace ESGI
 {
-private:
-	std::vector<GameObject*> ActiveObjects;
-	std::vector<GameObject*> InactiveObjects;
+	class GameObject;
+	class Transform;
+	__declspec(dllexport) class Scene
+	{
+	private:
+		std::vector<GameObject*> ActiveObjects;
+		std::vector<GameObject*> InactiveObjects;
+		std::vector<Transform*> ActiveTransform;
+	public:
+		__declspec(dllexport) Scene();
+		__declspec(dllexport) void SetInactive(GameObject*);
 
-public:
-	__declspec(dllexport) Scene();
-	__declspec(dllexport) void SetInactive(GameObject*);
+		__declspec(dllexport) void SetActive(GameObject*);
 
-	__declspec(dllexport) void SetActive(GameObject*);
-
-	__declspec(dllexport) void CleanInactive();
-
-	//std::vector<GameObject*> GetActiveObjects();
+		__declspec(dllexport) void CleanInactive();
 
 
 
-};
+		__declspec(dllexport) std::vector<GameObject*> GetActiveObjects();
 
+
+
+	};
+}

@@ -1,53 +1,61 @@
-#pragma once
+﻿#pragma once
 
 #include <vector>
+#include <string>
 
 #include "Component.h"
 #include "Vector2.h"
 #include "Behaviour.h"
 #include "Transform.h"
 #include "Scene.h"
-
-__declspec(dllexport) class GameObject
+namespace ESGI
 {
-private:
-	Scene* scene;
-public:
-	static GameObject* m_pool;
-	static int m_currentIndex;
+	__declspec(dllexport) class GameObject
+	{
+	private:
+		Scene* scene;
+	public:
+		static GameObject* m_pool;
+		static int m_currentIndex;
 
 	std::vector<Component*> *components;
 
-	GameObject() {
-		scene = new Scene();
-		components = new std::vector<Component*>();
-		Transform *transform = new Transform();
-		components->push_back(transform);
-	}
-	GameObject(Scene* myScene) {
-		scene = myScene;
-		
-		components = new std::vector<Component*>();
-		Transform* transform = new Transform();
-		components->push_back(transform);
-		scene->SetActive(this);
-	}
-	~GameObject() {
-		delete[] components;
-		scene = nullptr;
-		delete(this);
-	}
+		GameObject() {
+			scene = new Scene();
+			components = new std::vector<Component*>();
+			Transform* transform = new Transform();
+			components->push_back(transform);
+		}
+		GameObject(Scene* myScene) {
+			scene = myScene;
 
-	static GameObject* Allocate() {
-		return &m_pool[m_currentIndex++];
-	}
-	static void CreatePool(int count) {
-		m_pool = new GameObject[count];
-	}
-	static void DestroyPool() {
-		delete[] m_pool;
-	}
+			components = new std::vector<Component*>();
+			Transform* transform = new Transform();
+			components->push_back(transform);
+			scene->SetActive(this);
+		}
+		~GameObject() {
+			delete[] components;
+			scene = nullptr;
+			delete(this);
+		}
+
+		std::string toString() {
+			return "GameObject Transform";
+		}
+
+		static GameObject* Allocate() {
+			//ok, si nombre croissant d'objets allou�s et peu/pas de d�alloc
+			return &m_pool[m_currentIndex++];
+		}
+		static void CreatePool(int count) {
+			m_pool = new GameObject[count];
+		}
+		static void DestroyPool() {
+			delete[] m_pool;
+		}
 
 
-};
+	};
 
+}

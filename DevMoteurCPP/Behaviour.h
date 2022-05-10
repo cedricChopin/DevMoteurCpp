@@ -1,9 +1,11 @@
 #pragma once
-
-__declspec(dllexport) class Behaviour
+namespace ESGI
 {
-	virtual void Start();
-	virtual void Update();
-	virtual void Awake();
-};
+	__declspec(dllexport) class Behaviour
+	{
+		virtual void Start() = 0;
+		virtual void Update() = 0;
+		virtual void Awake() = 0;
+	};
 
+}

@@ -1,39 +1,41 @@
 #include "pch.h"
 #include "Scene.h"
 #include "GameObject.h"
+#include "Transform.h"
+
+namespace ESGI
+{
+	Scene::Scene() {
+
+	}
 
 
-Scene::Scene() {
 
-}
+	void Scene::SetInactive(GameObject* object) {
+		auto position = std::find(ActiveObjects.begin(), ActiveObjects.end(), object);
+		if (position != ActiveObjects.end()) {
+			ActiveObjects.erase(position);
+			InactiveObjects.push_back(object);
+		}
+	}
+
+	void Scene::SetActive(GameObject* object) {
+
+		ActiveObjects.push_back(object);
+	}
 
 
+	void Scene::CleanInactive() {
 
-void Scene::SetInactive(GameObject* object) {
-	auto position = std::find(ActiveObjects.begin(), ActiveObjects.end(), object);
-	if (position != ActiveObjects.end()) {
-		ActiveObjects.erase(position);
-		InactiveObjects.push_back(object);
+		std::for_each(InactiveObjects.begin(), InactiveObjects.end(),
+			[](GameObject* object)
+			{
+				object->~GameObject();
+			}
+		);
+		InactiveObjects.clear();
+	}
+	std::vector<GameObject*> Scene::GetActiveObjects() {
+		return ActiveObjects;
 	}
 }
-
-void Scene::SetActive(GameObject* object) {
-
-	ActiveObjects.push_back(object);
-}
-
-
-void Scene::CleanInactive() {
-	
-	std::for_each(InactiveObjects.begin(), InactiveObjects.end(),
-		[](GameObject* object)
-		{
-			object->~GameObject();
-		}
-	);
-	InactiveObjects.clear();
-}
-/*
-std::vector<GameObject*> Scene::GetActiveObjects() {
-	return ActiveObjects;
-}*/
