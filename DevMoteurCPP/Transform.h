@@ -1,5 +1,7 @@
 #pragma once
 #include "Vector2.h"
+#include <string>
+#include <sstream>
 #include "Component.h"
 namespace ESGI
 {
@@ -20,12 +22,13 @@ namespace ESGI
 			scale = Vector2::one();
 		}
 
-		__declspec(dllexport) void move(int x, int y);
+		__declspec(dllexport) void move(double x, double y);
 		__declspec(dllexport) void move(Vector2 vec);
 		__declspec(dllexport) void rotate(double angle);
 		__declspec(dllexport) void rescale(double size);
 		__declspec(dllexport) void Start();
 		__declspec(dllexport) void Update();
 		__declspec(dllexport) void Awake();
+		__declspec(dllexport) std::string ToString();
 	};
 }

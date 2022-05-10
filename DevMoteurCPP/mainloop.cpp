@@ -90,8 +90,6 @@ namespace ESGI
 			Clock* clock = new ESGI::Clock;
 			Input* input = new ESGI::Input;
 			Engine* engine = new ESGI::Engine;
-
-
 			static EngineContext context(*clock, *input, *engine);
 			return context;
 		}
@@ -164,7 +162,7 @@ namespace ESGI
 			
 			m_context.Input().Update();
 			
-			m_context.Engine().Update(m_context);
+			m_context.Engine().Update(m_context, scene);
 
 
 			std::cout << "Scene : ";

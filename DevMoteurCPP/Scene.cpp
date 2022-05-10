@@ -35,7 +35,29 @@ namespace ESGI
 		);
 		InactiveObjects.clear();
 	}
+	void Scene::PushTransform(Transform* transform)
+	{
+		ActiveTransform.push_back(transform);
+	}
+	void Scene::Update()
+	{
+		UpdateTransform();
+	}
+	void Scene::UpdateTransform()
+	{
+		std::for_each(ActiveTransform.begin(), ActiveTransform.end(),
+			[](Transform* object)
+			{
+				object->move(0.1, 0.1);
+				std::cout << object->ToString();
+			}
+		);
+	}
 	std::vector<GameObject*> Scene::GetActiveObjects() {
 		return ActiveObjects;
+	}
+	std::vector<Transform*> Scene::GetAllTransforms()
+	{
+		return ActiveTransform;
 	}
 }

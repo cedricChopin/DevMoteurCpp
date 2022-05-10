@@ -25,6 +25,7 @@ namespace ESGI
 			components = new std::vector<Component*>();
 			Transform* transform = new Transform();
 			components->push_back(transform);
+			scene->PushTransform(transform);
 		}
 		GameObject(Scene* myScene) {
 			scene = myScene;
@@ -33,6 +34,7 @@ namespace ESGI
 			Transform* transform = new Transform();
 			components->push_back(transform);
 			scene->SetActive(this);
+			scene->PushTransform(transform);
 		}
 		~GameObject() {
 			delete[] components;

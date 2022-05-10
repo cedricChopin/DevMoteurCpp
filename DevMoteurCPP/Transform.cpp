@@ -3,7 +3,7 @@
 #include <math.h>
 namespace ESGI
 {
-	void Transform::move(int x, int y) {
+	void Transform::move(double x, double y) {
 		position.x += x;
 		position.y += y;
 	}
@@ -27,6 +27,15 @@ namespace ESGI
 	}
 	void Transform::Awake() {
 
+	}
+	std::string Transform::ToString()
+	{
+		std::stringstream ss;
+		ss << "Pos x : " << position.x << "; Pos y : " << position.y << "; ";
+		ss << "Rot x : " << rotation.x << "; Rot y : " << rotation.y << "; ";
+		ss << "Scale x : " << scale.x << "; Scale y : " << scale.y << "\n";
+		std::string s = ss.str();
+		return s;
 	}
 	void Transform::Update() {
 

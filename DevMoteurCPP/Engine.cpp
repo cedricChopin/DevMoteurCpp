@@ -3,9 +3,11 @@
 
 // par contre lors de la definition de la fonction il faut une implementation complete
 #include "EngineContext.h"
+#include "Transform.h"
 #include "Timer.h"
 
 #include <iostream>
+#include "Scene.h"
 
 namespace ESGI {
 
@@ -62,9 +64,12 @@ namespace ESGI {
 	}
 
 	// ce n'est pas une fonction virtuelle !
-	void Engine::Update(EngineContext& context)
+	void Engine::Update(EngineContext& context, Scene* scene)
 	{
 		std::cout << "[Engine] update\n";
+		scene->Update();
+
+		
 
 		double elapsedTime = context.clock.ElapsedTime;
 

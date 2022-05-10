@@ -8,7 +8,7 @@ namespace ESGI
 	// qui ne sont pas encore definies (fonctionne ici car il s'agit de pointeurs,
 	// seul le typage interesse le compilateur dans ce cas)	
 	__declspec(dllexport) struct EngineContext;
-
+	class Scene;
 	__declspec(dllexport) struct Engine : public InfraStructure
 	{
 		// Un exemple basique de sous-systeme du moteur (par ex. le moteur Behaviour)
@@ -39,7 +39,7 @@ namespace ESGI
 		__declspec(dllexport) void DeInitialize() final;
 
 		// ce n'est pas une fonction virtuelle !
-		__declspec(dllexport) void Update(EngineContext& context);
+		__declspec(dllexport) void Update(EngineContext& context, Scene* scene);
 
 	};
 }
