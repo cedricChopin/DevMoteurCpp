@@ -17,8 +17,6 @@ public:
 	static int m_currentIndex;
 
 	std::vector<Component*> *components;
-	Behaviour behaviour;
-	Transform transform;
 
 	GameObject() {
 		scene = new Scene();

@@ -2,8 +2,8 @@
 
 __declspec(dllexport) class Behaviour
 {
-	void Start();
-	void Update();
-	void Awake();
+	virtual void Start();
+	virtual void Update();
+	virtual void Awake();
 };
 
