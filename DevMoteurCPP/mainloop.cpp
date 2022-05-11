@@ -162,9 +162,9 @@ namespace ESGI
 			
 			m_context.Engine().Update(m_context, scene);
 
-
+			
 			std::cout << "Scene : \n";
-			std::cout << "Object Selected : " << scene->GetSelectedObject() << "\n";
+			std::cout << "Object Selected : " << scene->GetActiveObjects().at(scene->GetSelectedObject() - 1)->getName() << "\n";
 			auto ActiveObjects = scene->GetActiveObjects();
 			std::for_each(ActiveObjects.begin(), ActiveObjects.end(),
 				[](GameObject* object)

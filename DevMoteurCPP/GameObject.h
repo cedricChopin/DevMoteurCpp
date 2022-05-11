@@ -50,6 +50,7 @@ namespace ESGI
 
 		std::string toString() {
 			std::stringstream ss;
+			ss << "Name : " << name << " ";
 			std::for_each(components.begin(), components.end(),
 				[&ss](Component* object)
 				{
@@ -59,6 +60,10 @@ namespace ESGI
 			std::string s = ss.str();
 			return s;
 
+		}
+
+		std::string getName() {
+			return name;
 		}
 
 		static GameObject* Allocate() {
