@@ -131,7 +131,7 @@ namespace ESGI
 			}
 			scene = new Scene();
 			// Test d'ajouts de GameObjects
-			scene->loadScene("C:/Users/cedri/Documents/ESGI_Cours_5AS1/DevMoteurcpp/DevMoteurcpp/DevMoteurCpp/DevMoteurCPP/scene.json");
+			scene->loadScene("../DevMoteurCPP/scene.json");
 
 			// exemple de scheduling de deux fonctions (non membre, plus simple a faire)
 			// todo: event/delegate facon c# acceptant tout type de fonction.
