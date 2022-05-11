@@ -134,6 +134,7 @@ namespace ESGI
 			GameObject* object1 = new GameObject(scene);
 			GameObject* object2 = new GameObject(scene);
 			GameObject* object3 = new GameObject(scene);
+			scene->loadScene("D:/ESGI/Developpement Moteur JV/Projet/DevMoteurCPP/scene.json");
 
 			// exemple de scheduling de deux fonctions (non membre, plus simple a faire)
 			// todo: event/delegate facon c# acceptant tout type de fonction.

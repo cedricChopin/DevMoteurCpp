@@ -1,0 +1,47 @@
+{
+
+	"GameObject": [
+		{
+			"Transform": 
+			{
+				"Position": 
+				{
+					"x": 12.0,
+					"y": 23.0
+				},
+				"Rotation": 
+				{
+					"x": 0.0,
+					"y": 0.0
+				},
+				"Scale": 
+				{
+					"x": 1.0,
+					"y": 1.0
+				}
+			},
+			"Name": "Ball"
+		},
+		{
+			"Transform": 
+			{
+				"Position": 
+				{
+					"x": 0.0,
+					"y": -10.0
+				},
+				"Rotation": 
+				{
+					"x": 0.0,
+					"y": 0.0
+				},
+				"Scale": 
+				{
+					"x": 1.0,
+					"y": 1.0
+				}
+			},
+			"Name": "Player"
+		}
+	]
+}

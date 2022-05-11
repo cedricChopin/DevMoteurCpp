@@ -2,6 +2,9 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <string>
+#include "json.h"
+
 namespace ESGI
 {
 	class GameObject;
@@ -30,7 +33,7 @@ namespace ESGI
 
 		__declspec(dllexport) std::vector<Transform*> GetAllTransforms();
 
-
+		__declspec(dllexport) void loadScene(std::string nameFile);
 
 	};
 }

@@ -17,11 +17,12 @@ namespace ESGI
 	public:
 		static GameObject* m_pool;
 		static int m_currentIndex;
-
+		std::string name;
 	std::vector<Component*> *components;
 
 		GameObject() {
 			scene = new Scene();
+			name = "GameObject";
 			components = new std::vector<Component*>();
 			Transform* transform = new Transform();
 			components->push_back(transform);
@@ -29,12 +30,20 @@ namespace ESGI
 		}
 		GameObject(Scene* myScene) {
 			scene = myScene;
-
+			name = "GameObject";
 			components = new std::vector<Component*>();
 			Transform* transform = new Transform();
 			components->push_back(transform);
 			scene->SetActive(this);
 			scene->PushTransform(transform);
+		}
+		GameObject(Scene* myScene, Transform* tr, std::string name) {
+			scene = myScene;
+			this->name = name;
+			components = new std::vector<Component*>();
+			components->push_back(tr);
+			scene->SetActive(this);
+			scene->PushTransform(tr);
 		}
 		~GameObject() {
 			delete[] components;
