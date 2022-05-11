@@ -67,7 +67,7 @@ namespace ESGI {
 	void Engine::Update(EngineContext& context, Scene* scene)
 	{
 		std::cout << "[Engine] update\n";
-		scene->Update();
+		
 
 		
 
@@ -78,6 +78,8 @@ namespace ESGI {
 		// alternativement on peut appliquer une correction en extrapolant a partir du temps ecoule 
 		if (elapsedTime > 0.10)
 			elapsedTime = 0.10;
+		float deltaTime = static_cast<float>(elapsedTime);
+		scene->Update(deltaTime);
 
 		ProcessSystems(elapsedTime);
 	}

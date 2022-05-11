@@ -37,7 +37,21 @@ namespace ESGI
 		std::string s = ss.str();
 		return s;
 	}
-	void Transform::Update() {
-
+	void Transform::Update(float deltaTime) {
+		if (LeftButtonPressed)
+			move(-1 * deltaTime, 0);
+		if (RightButtonPressed)
+			move(1 * deltaTime, 0);
+		if (UpButtonPressed)
+			move(0, 1 * deltaTime);
+		if (DownButtonPressed)
+			move(0, -1 * deltaTime);
+	}
+	void Transform::UpdateInput(bool left, bool right, bool up, bool down)
+	{
+		LeftButtonPressed = left;
+		RightButtonPressed = right;
+		UpButtonPressed = up;
+		DownButtonPressed = down;
 	}
 }

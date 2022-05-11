@@ -1,12 +1,19 @@
 #pragma once
 
 #include "InfraStructure.h"
+#include "Scene.h"
 
 namespace ESGI
 {
 	__declspec(dllexport) struct Input : public InfraStructure
 	{
 		bool QuitButtonPressed = false;
+		bool LeftButtonPressed = false;
+		bool RightButtonPressed = false;
+		bool UpButtonPressed = false;
+		bool DownButtonPressed = false;
+		int ObjectSelected = 1;
+		Scene* scene;
 
 		__declspec(dllexport) bool Initialize() final;
 

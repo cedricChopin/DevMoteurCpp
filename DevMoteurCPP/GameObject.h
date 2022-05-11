@@ -18,41 +18,47 @@ namespace ESGI
 		static GameObject* m_pool;
 		static int m_currentIndex;
 		std::string name;
-	std::vector<Component*> *components;
+		std::vector<Component*> components;
 
 		GameObject() {
 			scene = new Scene();
 			name = "GameObject";
-			components = new std::vector<Component*>();
 			Transform* transform = new Transform();
-			components->push_back(transform);
+			components.push_back(transform);
 			scene->PushTransform(transform);
 		}
 		GameObject(Scene* myScene) {
 			scene = myScene;
 			name = "GameObject";
-			components = new std::vector<Component*>();
 			Transform* transform = new Transform();
-			components->push_back(transform);
+			components.push_back(transform);
 			scene->SetActive(this);
 			scene->PushTransform(transform);
 		}
 		GameObject(Scene* myScene, Transform* tr, std::string name) {
 			scene = myScene;
 			this->name = name;
-			components = new std::vector<Component*>();
-			components->push_back(tr);
+			components.push_back(tr);
 			scene->SetActive(this);
 			scene->PushTransform(tr);
 		}
 		~GameObject() {
-			delete[] components;
+			//delete components;
 			scene = nullptr;
 			delete(this);
 		}
 
 		std::string toString() {
-			return "GameObject Transform";
+			std::stringstream ss;
+			std::for_each(components.begin(), components.end(),
+				[&ss](Component* object)
+				{
+					ss << object->ToString();
+				}
+			);
+			std::string s = ss.str();
+			return s;
+
 		}
 
 		static GameObject* Allocate() {

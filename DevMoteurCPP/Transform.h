@@ -1,6 +1,5 @@
 #pragma once
 #include "Vector2.h"
-#include <string>
 #include <sstream>
 #include "Component.h"
 namespace ESGI
@@ -11,6 +10,11 @@ namespace ESGI
 		Vector2 position;
 		Vector2 rotation;
 		Vector2 scale;
+
+		bool LeftButtonPressed = false;
+		bool RightButtonPressed = false;
+		bool UpButtonPressed = false;
+		bool DownButtonPressed = false;
 
 		__declspec(dllexport) Transform(Vector2 pos, Vector2 rot, Vector2 s) : position(pos), rotation(rot), scale(s) {}
 		__declspec(dllexport) Transform(Vector2 pos) : position(pos), rotation(Vector2::zero()), scale(Vector2::one()) {}
@@ -27,7 +31,8 @@ namespace ESGI
 		__declspec(dllexport) void rotate(double angle);
 		__declspec(dllexport) void rescale(double size);
 		__declspec(dllexport) void Start();
-		__declspec(dllexport) void Update();
+		__declspec(dllexport) void Update(float deltaTime);
+		__declspec(dllexport) void UpdateInput(bool left, bool right, bool up, bool down);
 		__declspec(dllexport) void Awake();
 		__declspec(dllexport) std::string ToString();
 	};

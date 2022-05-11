@@ -39,19 +39,43 @@ namespace ESGI
 	{
 		ActiveTransform.push_back(transform);
 	}
-	void Scene::Update()
+	void Scene::Update(float deltaTime)
 	{
-		UpdateTransform();
+		UpdateTransform(deltaTime);
 	}
-	void Scene::UpdateTransform()
+	void Scene::UpdateTransform(float deltaTime)
 	{
+		bool left = LeftButtonPressed;
+		bool right = RightButtonPressed;
+		bool up = UpButtonPressed;
+		bool down = DownButtonPressed;
+		int select = ObjectSelected;
+		int idx = 1;
 		std::for_each(ActiveTransform.begin(), ActiveTransform.end(),
-			[](Transform* object)
+			[&left, &right, &up, &down, &idx, &select, &deltaTime](Transform* object)
 			{
-				object->move(0.1, 0.1);
-				std::cout << object->ToString();
+
+				
+				if (idx == select) {
+					object->UpdateInput(left, right, up, down);
+				}
+				else {
+					object->UpdateInput(false, false, false, false);
+				}
+				object->Update(deltaTime);
+				idx++;
+				
+
 			}
 		);
+	}
+	void Scene::UpdateInput(bool left, bool right, bool up, bool down, int select)
+	{
+		LeftButtonPressed = left;
+		RightButtonPressed = right;
+		UpButtonPressed = up;
+		DownButtonPressed = down;
+		ObjectSelected = select;
 	}
 	std::vector<GameObject*> Scene::GetActiveObjects() {
 		return ActiveObjects;
@@ -82,5 +106,8 @@ namespace ESGI
 			GameObject* obj = new GameObject(this, tr, name);
 		}
 
+	}
+	int Scene::GetSelectedObject() {
+		return ObjectSelected;
 	}
 }

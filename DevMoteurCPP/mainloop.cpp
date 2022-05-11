@@ -131,10 +131,7 @@ namespace ESGI
 			}
 			scene = new Scene();
 			// Test d'ajouts de GameObjects
-			GameObject* object1 = new GameObject(scene);
-			GameObject* object2 = new GameObject(scene);
-			GameObject* object3 = new GameObject(scene);
-			scene->loadScene("D:/ESGI/Developpement Moteur JV/Projet/DevMoteurCPP/scene.json");
+			scene->loadScene("C:/Users/cedri/Documents/ESGI_Cours_5AS1/DevMoteurcpp/DevMoteurcpp/DevMoteurCpp/DevMoteurCPP/scene.json");
 
 			// exemple de scheduling de deux fonctions (non membre, plus simple a faire)
 			// todo: event/delegate facon c# acceptant tout type de fonction.
@@ -166,12 +163,13 @@ namespace ESGI
 			m_context.Engine().Update(m_context, scene);
 
 
-			std::cout << "Scene : ";
+			std::cout << "Scene : \n";
+			std::cout << "Object Selected : " << scene->GetSelectedObject() << "\n";
 			auto ActiveObjects = scene->GetActiveObjects();
 			std::for_each(ActiveObjects.begin(), ActiveObjects.end(),
 				[](GameObject* object)
 				{
-					std::cout << object->toString() << " \n";
+					std::cout << object->toString();
 				}
 			);
 		}
@@ -189,15 +187,17 @@ namespace ESGI
 
 			while (!m_needToQuit)
 			{
-				std::cout << "[Application] frame # " << m_frameIndex << std::endl;
+				std::cout << "[Application] frame # " << m_frameIndex  << std::endl;
 				
 				Update();
 
 				
 				// emule un delai de traitement (une synchro verticale par ex.)
 				std::this_thread::sleep_for(std::chrono::milliseconds(10));
-
-				m_needToQuit = m_context.Input().QuitButtonPressed;
+				auto input = m_context.Input();
+				m_needToQuit = input.QuitButtonPressed;
+				scene->UpdateInput(input.LeftButtonPressed, input.RightButtonPressed,
+					input.UpButtonPressed, input.DownButtonPressed, input.ObjectSelected);
 
 				m_frameIndex++;
 			}
